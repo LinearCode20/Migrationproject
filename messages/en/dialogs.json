@@ -1,0 +1,58 @@
+{
+  "verify": {
+    "title": "Verify {toolName}",
+    "owner_title": "Get a verified badge for {toolName}",
+    "owner_benefit": "A verified badge shows visitors that the people who run {toolName} manage this listing.",
+    "otp_sent": "OTP code sent to your email",
+    "success_message": "You've successfully verified {toolName}",
+    "sign_in": "Sign in to verify {toolName}. Use your email at {domain} to verify it in one step.",
+    "account_intro": "You're signed in as {email}, which is on the {domain} domain, so you can verify this listing right away.",
+    "intro": "To verify this listing, you need to confirm ownership of the {domain} domain. This helps us ensure that you represent the organization.",
+    "benefits_title": "Verifying makes you the owner of this listing, gives it a verified badge and lets you:",
+    "benefit_update": "Update tool information",
+    "benefit_manage": "Manage its categories and alternatives",
+    "benefit_upgrade": "Upgrade its listing for extra exposure",
+    "email_label": "Email address",
+    "email_placeholder": "e.g. hello@{domain}",
+    "cancel_button": "Cancel",
+    "verify_button": "Verify {toolName}",
+    "send_code_button": "Send verification code",
+    "verification_intro": "We've sent a verification code to {email}. Enter the code below to complete the verification process.",
+    "verification_label": "Verification code",
+    "verification_placeholder": "Enter the {length}-digit code",
+    "change_email_button": "Change email",
+    "resend_in": "Resend in {seconds}s",
+    "resend_code": "Resend code",
+    "email_domain_error": "Email must match the website domain ({domain})"
+  },
+  "embed": {
+    "title": "Embed the {toolName} badge",
+    "description": "Use the following badge to showcase your tool on your website or documentation.",
+    "theme_label": "Theme",
+    "width_label": "Width",
+    "height_label": "Height",
+    "preview_label": "Preview",
+    "preview_alt": "{name} badge preview",
+    "code_label": "Embed code",
+    "copy_button": "Copy",
+    "copied": "Copied!"
+  },
+  "report": {
+    "title": "Report {toolName}",
+    "success_message": "Thank you for your report. We'll take a look at it shortly.",
+    "question": "What is happening with this tool?",
+    "email_label": "Email",
+    "email_placeholder": "Your email",
+    "type_label": "Type",
+    "types": {
+      "BrokenLink": "Broken link",
+      "WrongCategory": "Wrong category",
+      "Outdated": "Outdated",
+      "Other": "Other"
+    },
+    "message_label": "Message",
+    "message_placeholder": "Provide additional details about the issue…",
+    "send_button": "Send",
+    "cancel_button": "Cancel"
+  }
+}

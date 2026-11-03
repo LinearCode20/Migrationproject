@@ -1,0 +1,10 @@
+{
+  "required": "This field is required",
+  "invalidUrl": "Please enter a valid URL",
+  "invalidEmail": "Please enter a valid email address",
+  "maxLength": "This field can't be longer than {length} {length, plural, =1 {character} other {characters}}",
+  "invalidLength": "This field must be {length} {length, plural, =1 {character} other {characters}}",
+  "fileCannotBeEmpty": "This file is empty. Choose another file.",
+  "fileSizeTooLarge": "This file is too large. Choose a smaller file.",
+  "fileTypeInvalid": "This file type is not allowed. Choose a JPG, PNG, WebP or AVIF file."
+}

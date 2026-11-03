@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "jsx-a11y", "nextjs", "oxc", "import"],
+  "rules": {
+    "curly": ["warn", "all"],
+    "capitalized-comments": [
+      "warn",
+      "always",
+      {
+        "ignoreConsecutiveComments": true
+      }
+    ],
+    "eqeqeq": "warn",
+    "no-nested-ternary": "warn",
+    "no-useless-return": "warn",
+    "typescript/consistent-type-imports": "warn",
+    "typescript/no-explicit-any": "warn",
+    "import/no-relative-parent-imports": "warn",
+    "func-style": [
+      "warn",
+      "declaration",
+      {
+        "allowTypeAnnotation": true
+      }
+    ],
+    "typescript/array-type": [
+      "warn",
+      {
+        "default": "array"
+      }
+    ],
+    "typescript/consistent-type-definitions": ["warn", "interface"],
+    "prefer-template": "warn",
+    "nextjs/no-img-element": "off",
+    "nextjs/no-html-link-for-pages": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "jsx-a11y/heading-has-content": "off",
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "overrides": [
+    {
+      "files": ["emails/**"],
+      "rules": {
+        "react/purity": "off"
+      }
+    }
+  ]
+}

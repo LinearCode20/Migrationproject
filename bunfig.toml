@@ -1,0 +1,4 @@
+[test]
+# Runs before any test module is imported, so server-only modules load outside a React Server
+# Component.
+preload = ["./test/setup.ts"]

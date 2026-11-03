@@ -1,0 +1,152 @@
+{
+  "about": {
+    "title": "About us",
+    "description": "{siteName} is a community-driven list of tools and resources for developers."
+  },
+  "advertise": {
+    "title": "Advertise",
+    "description": "Promote your business or software on {siteName} and reach a wide audience of software enthusiasts.",
+    "cta": {
+      "title": "Need a custom partnership?",
+      "description": "Tell us more about your company and we will get back to you as soon as possible.",
+      "button": "Contact us"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "description": "Get access to the dashboard and manage your submitted tools."
+    },
+    "verify": {
+      "title": "Check your inbox",
+      "description": "Check your inbox to sign in to {siteName}.",
+      "instructions": "We've sent you a magic link to {email}. Please click the link to confirm your address and sign in.",
+      "no_email": "No email in your inbox? Check your spam folder or <link>try a different email address</link>."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "table": {
+      "columns": {
+        "name": "Name",
+        "tagline": "Description",
+        "status": "Status",
+        "published_at": "Published at"
+      },
+      "filters": {
+        "name_label": "Name"
+      },
+      "tools": {
+        "empty_state": "No tools found. Submit or verify a tool to get started.",
+        "submit_button": "Submit a tool",
+        "upgrade_button": "Upgrade listing"
+      },
+      "bookmarks": {
+        "empty_state": "No bookmarked tools yet. Browse tools and bookmark them to save for later.",
+        "remove_button": "Remove",
+        "success_message": "Bookmark removed"
+      }
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "A collection of useful articles for developers and software enthusiasts. Learn about the latest trends and technologies in the community."
+  },
+  "categories": {
+    "title": "Browse categories",
+    "description": "Browse all tool categories to find the perfect software for your needs."
+  },
+  "category": {
+    "title": "{name} tools",
+    "description": "A curated collection of the best {name}.",
+    "search": {
+      "placeholder": "Search {name}…"
+    }
+  },
+  "collections": {
+    "title": "Collections",
+    "description": "Curated collections of the best tools on {siteName}, grouped so you can browse by what matters to you.",
+    "latest": {
+      "name": "Latest",
+      "title": "Latest tools & software",
+      "description": "The newest tools added to {siteName}, sorted by publish date. Discover what launched recently.",
+      "search": {
+        "placeholder": "Search latest tools…"
+      }
+    },
+    "featured": {
+      "name": "Featured",
+      "title": "Featured tools & software",
+      "description": "Handpicked tools that stand out on {siteName}, from teams supporting the directory.",
+      "search": {
+        "placeholder": "Search featured tools…"
+      }
+    },
+    "coming-soon": {
+      "name": "Coming soon",
+      "title": "Upcoming tools & software",
+      "description": "Tools scheduled to be published on {siteName} soon. They are not visible anywhere else on the site.",
+      "search": {
+        "placeholder": "Search scheduled tools…"
+      }
+    }
+  },
+  "tags": {
+    "title": "Browse tags",
+    "description": "Browse all available tags to discover tools by specific features and capabilities."
+  },
+  "tag": {
+    "title": "Tools tagged with \"{name}\"",
+    "description": "Explore tools and software tagged with {name} to find solutions that match your specific needs.",
+    "search": {
+      "placeholder": "Search in \"{name}\"…"
+    }
+  },
+  "error": {
+    "title": "Something went wrong!",
+    "description": "Please try again. If the problem persists, <link>contact support</link>.",
+    "reload_button": "Reload the page",
+    "home_button": "Go back home"
+  },
+  "not_found": {
+    "title": "404 Not Found",
+    "description": "We're sorry, but the page could not be found. You may have mistyped the address or the page may have moved.",
+    "search_placeholder": "Search tools…",
+    "categories_link": "Browse categories",
+    "latest_link": "Latest tools",
+    "home_link": "Go back home"
+  },
+  "submit": {
+    "title": "Add a free listing",
+    "description": "Listing on {siteName} is a great way to get more exposure for your tool. We only list high-quality tools that are useful for directory owners.",
+    "upgrade": {
+      "title": "Upgrade {name}'s listing",
+      "description": "Upgrade {name}'s listing on {siteName} for more exposure, special features, and tailored packages, ranging from free listings to premium placement."
+    },
+    "success": {
+      "title": "Thank you for submitting {name}!",
+      "description": "We'll review {name}'s submission and publish it on {siteName} soon.",
+      "paid_title": "Thanks for upgrading {name}!",
+      "paid_live": "Payment received. {name} is live on {siteName} with the {tier}.",
+      "paid_review": "Payment received. We'll review {name} and publish it on {siteName} within {hours} hours.",
+      "paid_processing": "Your payment is still processing. {name} gets the {tier} as soon as it clears.",
+      "free": "{name}'s free listing is in the queue. We review every submission by hand before it goes live on {siteName}.",
+      "dashboard_button": "Go to dashboard",
+      "listing_button": "View listing",
+      "upgrade_button": "Upgrade listing"
+    },
+    "current_tier": "Current tier",
+    "choose_tier": "Get {name} listing",
+    "cancelled": "Checkout was cancelled and no charge was made.",
+    "features": {
+      "free_speed": "Live in about {months, plural, one {# month} other {# months}}",
+      "paid_speed": "Live within {hours} hours",
+      "dofollow": "Dofollow backlink",
+      "no_dofollow": "No dofollow backlink"
+    },
+    "queue": {
+      "pending": "{name}'s free listing goes live in about <strong>{months, plural, one {# month} other {# months}}</strong>.",
+      "scheduled": "{name}'s free listing goes live on <strong>{date}</strong>."
+    }
+  }
+}

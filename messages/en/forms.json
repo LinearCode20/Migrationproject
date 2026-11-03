@@ -1,0 +1,38 @@
+{
+  "submit": {
+    "name_label": "Name",
+    "name_placeholder": "PostHog",
+    "website_label": "Website URL",
+    "website_placeholder": "https://posthog.com",
+    "note_label": "Note",
+    "note_placeholder": "Any additional information…",
+    "submit_button": "Submit",
+    "sign_in_description": "Your account lets you manage {name}'s listing and get an email when it goes live.",
+    "pricing": {
+      "price": "{price}{interval, select, week {/week} month {/month} year {/year} other {}}",
+      "queue_and_paid": "Free listings go live in about {months, plural, one {# month} other {# months}}. Paid listings from {price} skip the queue. You'll pick one after submitting.",
+      "queue": "Free listings go live in about {months, plural, one {# month} other {# months}}.",
+      "paid": "Paid listings start at {price}. You'll pick one after submitting."
+    },
+    "already_published": "{name} has already been published.",
+    "submitted_success": "{name} has been submitted.",
+    "errors": {
+      "failed_submission": "We couldn't submit your tool. Please try again."
+    }
+  },
+  "subscribe": {
+    "email_placeholder": "Enter your email",
+    "button_md": "Subscribe",
+    "button_lg": "Join our community",
+    "success_message": "You've been subscribed to the newsletter."
+  },
+  "sign_in": {
+    "continue_with": "Continue with {provider}",
+    "email_label": "Email",
+    "email_placeholder": "Enter your email",
+    "magic_link_button": "Send me a magic link"
+  },
+  "sign_out": {
+    "success_message": "You've been signed out successfully"
+  }
+}

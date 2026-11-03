@@ -1,0 +1,10 @@
+{
+  "ad_label": "Ad",
+  "learn_more": "Learn more",
+  "default_ad": {
+    "name": "Your brand here",
+    "short_description": "Reach an engaged audience and boost your sales",
+    "description": "Reach an engaged audience of potential customers and boost your sales.",
+    "button_label": "Advertise on {siteName}"
+  }
+}

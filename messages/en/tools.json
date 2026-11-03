@@ -1,0 +1,65 @@
+{
+  "count_tools": "{count, plural, one {# tool} other {# tools}}",
+  "no_tools": "No tools here yet.",
+  "no_tools_query": "No tools match “{query}”.",
+  "no_tools_filters": "No tools match the selected filters.",
+  "reset_filters": "Reset filters",
+  "submit_tool": "Submit a tool",
+  "screenshot_alt": "Screenshot of the {name} website",
+  "actions": {
+    "upgrade_tooltip": "Upgrade the listing for more exposure",
+    "upgrade_button": "Upgrade",
+    "billing_button": "Manage billing",
+    "billing_tooltip": "Update your card, download invoices or cancel",
+    "more_listing_actions": "More listing actions",
+    "verify_tooltip": "Is this yours? Prove you run it to manage the listing",
+    "verify_button": "Verify",
+    "verify_badge_tooltip": "Prove you run {domain} to show a verified badge",
+    "verify_badge_button": "Get verified badge",
+    "embed_tooltip": "Embed on your website",
+    "embed_button": "Embed",
+    "actions_button": "More",
+    "visit_button": "Visit",
+    "bookmark_add": "Save for later",
+    "bookmark_remove": "Remove from bookmarks",
+    "bookmark_save": "Save",
+    "bookmark_saved": "Saved",
+    "bookmark_adding": "Saving bookmark…",
+    "bookmark_added": "Bookmark added",
+    "bookmark_removing": "Removing bookmark…",
+    "bookmark_removed": "Bookmark removed",
+    "bookmark_view": "View bookmarks",
+    "bookmark_sign_in": "Sign in to save {toolName} to your bookmarks."
+  },
+  "filters": {
+    "search_placeholder": "Search tools…",
+    "all_categories": "All categories",
+    "sort_relevance": "Relevance",
+    "sort_latest": "Latest",
+    "sort_oldest": "Oldest",
+    "sort_name_asc": "Name (A to Z)",
+    "sort_name_desc": "Name (Z to A)"
+  },
+  "nav": {
+    "copy_link": "Copy link",
+    "link_copied": "Link copied to clipboard",
+    "share": "Share",
+    "share_on": "Share on {platform}",
+    "report": "Report an issue"
+  },
+  "status_alert": {
+    "preview": {
+      "title": "This is a preview only.",
+      "scheduled": "{toolName} will be published on {date}.",
+      "description": "{toolName} is not yet published and is only visible on this page.",
+      "upgrade_description": "{toolName} is not yet published and is only visible on this page. Upgrade your listing to skip the queue and get published within 24 hours.",
+      "publish_button": "Upgrade listing"
+    }
+  },
+  "billing": {
+    "errors": {
+      "no_subscription": "No active subscription for this listing is billed to {email}.",
+      "not_configured": "Billing management isn't set up yet. Please contact us at {email}."
+    }
+  }
+}

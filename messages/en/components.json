@@ -1,0 +1,106 @@
+{
+  "search": {
+    "placeholder": "Type to search…",
+    "no_results": "No results found.",
+    "see_all": "See all results",
+    "button_label": "Search"
+  },
+  "footer": {
+    "cta_title": "Subscribe to our newsletter",
+    "cta_description": "Join {count}+ other members and get updates straight to your inbox."
+  },
+  "newsletter_card": {
+    "title": "Get new tools by email",
+    "description": "Join {count}+ members who get the latest tools and updates in their inbox."
+  },
+  "cta_proof": {
+    "message": "Join {count}+ directory enthusiasts"
+  },
+  "feature_nudge": {
+    "message": "{name} has already been published on {siteName}. Upgrade its listing for extra exposure.",
+    "feature_button": "Upgrade listing",
+    "dismiss_button": "Dismiss"
+  },
+  "featured_tools": {
+    "add_tooltip": "Upgrade your tool's listing"
+  },
+  "listings": {
+    "similar_to": "Similar to {toolName}",
+    "view_all_tools": "View all tools",
+    "more_in_category": "More in {category}"
+  },
+  "pagination": {
+    "prev": "Prev",
+    "next": "Next",
+    "page_of": "Page {page} of {pageCount}",
+    "page_label": "Page:",
+    "label": "Pagination"
+  },
+  "product": {
+    "most_popular": "Most popular",
+    "price_period": {
+      "week": "week",
+      "month": "month",
+      "year": "year"
+    },
+    "footnote_label": "More details",
+    "sign_in_description": "Sign in to upgrade this listing. The account you pay with manages it."
+  },
+  "price": {
+    "off": "{discount}% off",
+    "left": "({showMax, select, yes {{remaining}/{max}} other {{remaining}}} left)"
+  },
+  "stats": {
+    "pageviews": "Monthly pageviews",
+    "tools": "Listed tools",
+    "subscribers": "Newsletter subscribers"
+  },
+  "testimonial": {
+    "quote": "After advertising on {siteName}, we saw a 38% increase in qualified leads and 2.4x ROI within the first month. The targeted audience was exactly what our business needed. Highly recommended!",
+    "author": {
+      "name": "Piotr Kulpinski",
+      "note": "Founder of Dirstarter"
+    }
+  },
+  "data_table": {
+    "empty_state": "No results.",
+    "column_header": {
+      "sorted_desc": "Sorted descending",
+      "sorted_asc": "Sorted ascending",
+      "not_sorted": "Not sorted",
+      "sort_asc": "Sort ascending",
+      "asc": "Asc",
+      "sort_desc": "Sort descending",
+      "desc": "Desc",
+      "hide_column": "Hide column",
+      "hide": "Hide"
+    },
+    "pagination": {
+      "rows_selected": "{selected} of {total} row(s) selected.",
+      "per_page": "Per page",
+      "page_of": "Page {page} of {total}",
+      "go_to_first": "Go to first page",
+      "go_to_previous": "Go to previous page",
+      "go_to_next": "Go to next page",
+      "go_to_last": "Go to last page"
+    },
+    "view_options": {
+      "view": "View",
+      "search_columns": "Search columns…",
+      "no_columns": "No columns found."
+    },
+    "toolbar": {
+      "search": "Search…",
+      "reset_filters": "Reset filters",
+      "reset": "Reset"
+    },
+    "faceted_filter": {
+      "selected": "selected",
+      "no_results": "No results found.",
+      "clear_filters": "Clear filters"
+    }
+  },
+  "show_more": {
+    "more": "+{count} more"
+  }
+}

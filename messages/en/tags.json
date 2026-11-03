@@ -1,0 +1,9 @@
+{
+  "no_tags": "No tags here yet.",
+  "no_tags_filters": "No tags match the selected filters.",
+  "filters": {
+    "search_placeholder": "Search tags…",
+    "sort_name_asc": "Name (A to Z)",
+    "sort_name_desc": "Name (Z to A)"
+  }
+}

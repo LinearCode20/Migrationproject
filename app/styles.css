@@ -1,0 +1,494 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Hover skips disabled controls. They keep pointer events for `cursor-not-allowed` and the
+ * tooltip that says why they are disabled, so a plain `:hover` would still restyle them.
+ * The `:where()` keeps the selector's specificity equal to a plain `:hover`.
+ */
+@custom-variant hover {
+  @media (hover: hover) {
+    &:hover:not(:where(:disabled, [aria-disabled="true"])) {
+      @slot;
+    }
+  }
+}
+
+/* A box that holds a text field, while that field shows its focus ring. */
+@custom-variant field-focus (&:has(:is(input, textarea, [contenteditable]):focus-visible));
+
+@theme {
+  --header-height: 3.125rem;
+  --header-top: 0rem;
+  --header-bottom: 0.75rem;
+  --header-inner-offset: calc(var(--header-top) + var(--header-height));
+  --header-outer-offset: calc(var(--header-inner-offset) + var(--header-bottom));
+  --sidebar-max-height: calc(100vh - var(--header-outer-offset) - var(--header-bottom));
+
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.238 0 0);
+  --color-border: oklch(0.908 0 0);
+  --color-input: oklch(0.908 0 0);
+  --color-ring: oklch(0.869 0 0);
+
+  /* The keyboard focus ring. Blue, so it never blends into a button fill or a border. */
+  --color-focus: oklch(0.58 0.2 255);
+
+  --color-card: oklch(0.985 0 0);
+  --color-card-foreground: oklch(0.238 0 0);
+
+  /*
+   * The page behind a dialog: the muted fill at 80%, unblurred. The page fades back rather
+   * than darkening, and the dialog's own border and shadow carry the separation.
+   */
+  --color-scrim: color-mix(in oklab, var(--color-muted) 80%, transparent);
+
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+
+  --color-primary: oklch(0.533 0.256 269.595);
+  --color-primary-foreground: oklch(0.985 0 0);
+
+  --color-secondary: oklch(0.97 0 0);
+  --color-secondary-foreground: oklch(0.418 0 0);
+
+  --color-muted: oklch(0.97 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+
+  --color-accent: oklch(0.97 0 0);
+  --color-accent-foreground: oklch(0.204 0 0);
+
+  --color-destructive: oklch(0.637 0.208 25.326);
+  --color-destructive-foreground: oklch(0.985 0 0);
+
+  --color-success: oklch(0.52 0.14 150);
+  --color-success-foreground: oklch(0.985 0 0);
+
+  --color-warning: oklch(0.555 0.134 55);
+  --color-warning-foreground: oklch(0.985 0 0);
+
+  --color-info: oklch(0.546 0.243 262);
+  --color-info-foreground: oklch(0.985 0 0);
+
+  /*
+   * Status text set on the page, a card or the tone's own tint, at 4.5:1 or more in both
+   * themes. `-foreground` is text on the solid fill instead.
+   */
+  --color-success-text: oklch(0.5 0.15 150.069);
+  --color-warning-text: oklch(0.53 0.19 38.402);
+  --color-info-text: oklch(0.488 0.243 264.376);
+  --color-destructive-text: oklch(0.505 0.213 27.518);
+
+  /*
+   * The hue behind a tinted status surface. Use it with the theme's tint strength, e.g.
+   * `bg-success-tint/(--tint-alpha)`, so one class reads right in both themes.
+   */
+  --color-success-tint: oklch(0.723 0.219 149.579);
+  --color-warning-tint: oklch(0.705 0.213 47.604);
+  --color-info-tint: oklch(0.623 0.214 259.815);
+  --color-destructive-tint: oklch(0.637 0.237 25.331);
+
+  --color-chart-1: oklch(0.677 0.157 35.19);
+  --color-chart-2: oklch(0.631 0.101 183.491);
+  --color-chart-3: oklch(0.379 0.044 225.539);
+  --color-chart-4: oklch(0.834 0.119 88.146);
+  --color-chart-5: oklch(0.783 0.126 58.749);
+
+  --tracking-micro: -0.0125em;
+
+  --font-system:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+
+  --font-sans: "Inter Variable", var(--font-system);
+  --font-display: "Inter Variable", var(--font-system);
+
+  --text-5xl: 2.75rem;
+
+  --spacing-fluid-xs: clamp(1rem, 2.5vw, 1.5rem);
+  --spacing-fluid-sm: clamp(1.5rem, 3.75vw, 2rem);
+  --spacing-fluid-md: clamp(2rem, 5vw, 3rem);
+  --spacing-fluid-lg: clamp(2.5rem, 6.25vw, 3.5rem);
+  --spacing-fluid-xl: clamp(3rem, 7.5vw, 4rem);
+
+  /*
+   * Surface elevations, one shadow per height: `popup` for a menu, select or popover,
+   * `tooltip` for the same idea at caption size, and `modal` for a dialog.
+   */
+  --shadow-popup:
+    0 1px 1px rgb(0 0 0 / 2%), 0 4px 8px -4px rgb(0 0 0 / 4%), 0 16px 24px -8px rgb(0 0 0 / 6%);
+  --shadow-tooltip: 0 1px 1px rgb(0 0 0 / 2%), 0 4px 8px rgb(0 0 0 / 4%);
+  --shadow-modal:
+    0 1px 1px rgb(0 0 0 / 2%), 0 8px 16px -4px rgb(0 0 0 / 4%), 0 24px 32px -8px rgb(0 0 0 / 6%);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-fade-in: fade-in 0.3s ease-in-out;
+  --animate-slide-in: slide-in 0.2s cubic-bezier(0.2, 0, 0, 1) 0.15s backwards;
+  --animate-ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-reveal: reveal linear forwards;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      translate: -2px 0;
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px) perspective(250px) rotateX(-15deg) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) perspective(500px) rotateX(0deg) scale(1);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --tint-alpha: 15%;
+    --tint-alpha-hover: 25%;
+
+    /* No lone word on a paragraph's last line. */
+    text-wrap-style: pretty;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    @apply border-border;
+  }
+
+  .dark {
+    --color-background: oklch(0.158 0 0);
+    --color-foreground: oklch(0.923 0 0);
+    --color-border: oklch(0.27 0 0);
+    --color-input: oklch(0.27 0 0);
+    --color-ring: oklch(0.321 0 0);
+    --color-focus: oklch(0.72 0.16 255);
+
+    --color-card: oklch(0.193 0 0);
+    --color-card-foreground: oklch(0.923 0 0);
+
+    --color-popover: oklch(0.158 0 0);
+    --color-popover-foreground: oklch(0.923 0 0);
+
+    --color-secondary: oklch(0.216 0 0);
+    --color-secondary-foreground: oklch(0.765 0 0);
+
+    --color-muted: oklch(0.216 0 0);
+    --color-muted-foreground: oklch(0.683 0 0);
+
+    --color-accent: oklch(0.216 0 0);
+    --color-accent-foreground: oklch(0.923 0 0);
+
+    --color-destructive: oklch(0.396 0.133 25.721);
+
+    --color-success: oklch(0.75 0.201 150);
+    --color-success-foreground: oklch(0.158 0 0);
+
+    --color-warning: oklch(0.8 0.164 75);
+    --color-warning-foreground: oklch(0.158 0 0);
+
+    --color-info: oklch(0.72 0.144 255);
+    --color-info-foreground: oklch(0.158 0 0);
+
+    --color-success-text: oklch(0.871 0.15 154.449);
+    --color-warning-text: oklch(0.837 0.128 66.29);
+    --color-info-text: oklch(0.809 0.105 251.813);
+    --color-destructive-text: oklch(0.808 0.114 19.571);
+
+    --tint-alpha: 10%;
+    --tint-alpha-hover: 20%;
+
+    --color-chart-1: oklch(0.529 0.193 262.129);
+    --color-chart-2: oklch(0.698 0.134 165.463);
+    --color-chart-3: oklch(0.723 0.15 60.631);
+    --color-chart-4: oklch(0.627 0.265 303.9);
+    --color-chart-5: oklch(0.612 0.209 6.386);
+  }
+
+  /*
+   * The one focus ring, wherever the browser shows focus (`:focus-visible`): a key press,
+   * or a text field however it took focus. Drawn over the element's own border.
+   */
+  :focus-visible {
+    outline-style: solid;
+  }
+
+  /*
+   * Every element holds the ring's width, offset and color before it takes focus, so focus
+   * only switches the outline style on. A transition then has nothing to animate: Tailwind's
+   * `transition` and `transition-colors` include `outline-color`, and `transition-all` would
+   * also catch the width and offset. Outline utilities such as `outline-primary` still win.
+   */
+  *,
+  ::before,
+  ::after {
+    outline-width: 2px;
+    outline-offset: -1px;
+    outline-color: var(--color-focus);
+  }
+
+  /* Editable fields and code opt out of pretty wrapping, since words would jump between lines while typing. */
+  input,
+  textarea,
+  select,
+  [contenteditable]:not([contenteditable="false"]),
+  pre,
+  code {
+    text-wrap-style: auto;
+  }
+
+  /* No grey flash on tap; the `:active` rule below is the feedback instead. */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Taps fire at once, with no double-tap-to-zoom wait, on anything that acts like a control. */
+  a[href],
+  button,
+  [role="button"],
+  [role="tab"],
+  [role="menuitem"],
+  [role="option"] {
+    touch-action: manipulation;
+  }
+
+  /* `hover:` never fires on a touch screen, so a press dims the control instead. */
+  @media (pointer: coarse) {
+    :is(
+        button,
+        [role="button"],
+        [role="tab"],
+        [role="menuitem"],
+        [role="option"],
+        a[href]
+      ):active:not(:disabled, [aria-disabled="true"]) {
+      opacity: 0.6;
+    }
+  }
+
+  hr {
+    @apply border-foreground/10;
+  }
+
+  strong {
+    @apply font-medium;
+  }
+
+  a,
+  button,
+  label[for],
+  [href] [class*="group-hover"],
+  [type]:not([disabled]) [class*="group-hover"] {
+    @apply ease-out;
+    @apply duration-100;
+    @apply not-disabled:cursor-pointer;
+    @apply underline-offset-[3px];
+    @apply decoration-[0.075em]!;
+  }
+
+  svg.lucide:not([class*="stroke"]) {
+    @apply stroke-[1.75];
+  }
+
+  svg.lucide:not([class*="size-"]),
+  svg[data-icon]:not([class*="size-"]) {
+    @apply size-[1em];
+  }
+
+  [href] svg[class*="arrow-"],
+  [type]:not([disabled]) svg[class*="arrow-"] {
+    @apply will-change-transform;
+    @apply duration-150;
+  }
+
+  [href]:hover svg[class*="arrow-right"],
+  [type]:not([disabled]):hover svg[class*="arrow-right"] {
+    @apply translate-x-[0.1em];
+  }
+
+  [href]:hover svg[class*="arrow-left"],
+  [type]:not([disabled]):hover svg[class*="arrow-left"] {
+    @apply -translate-x-[0.1em];
+  }
+
+  [href]:hover svg[class*="arrow-up-right"],
+  [type]:not([disabled]):hover svg[class*="arrow-up-right"] {
+    @apply translate-x-[0.1em];
+    @apply -translate-y-[0.1em];
+  }
+
+  [href]:hover svg[class*="arrow-up-left"],
+  [type]:not([disabled]):hover svg[class*="arrow-up-left"] {
+    @apply -translate-x-[0.1em];
+    @apply -translate-y-[0.1em];
+  }
+}
+
+/*
+ * One tooltip popup serves every trigger, so moving the pointer from one trigger to the next
+ * slides the panel over. Only the move animates: the content swaps at once. `data-instant` is
+ * Base UI asking for no animation (a keyboard focus, a dismissal).
+ */
+@layer components {
+  .tooltip-positioner {
+    transition:
+      top 150ms var(--ease-out-expo),
+      left 150ms var(--ease-out-expo),
+      right 150ms var(--ease-out-expo),
+      bottom 150ms var(--ease-out-expo),
+      transform 150ms var(--ease-out-expo);
+  }
+
+  /* Base UI slides the arrow along the panel's edge to stay over the anchor. */
+  .tooltip-arrow {
+    transition:
+      left 150ms var(--ease-out-expo),
+      top 150ms var(--ease-out-expo);
+  }
+
+  :is(.tooltip-positioner, .tooltip-arrow)[data-instant] {
+    transition: none;
+  }
+}
+
+@utility prose {
+  & [id] {
+    @apply relative;
+  }
+
+  & [id] > a[tabindex="-1"] {
+    @apply opacity-0;
+    @apply absolute;
+    @apply right-full;
+    @apply no-underline;
+    @apply p-2;
+    @apply -m-2;
+    @apply mr-0;
+  }
+
+  & [id] > a[tabindex="-1"]:after {
+    @apply content-["#"];
+  }
+
+  & [id]:hover > a[tabindex="-1"] {
+    @apply opacity-25;
+  }
+
+  & [id]:hover > a[tabindex="-1"]:hover {
+    @apply opacity-100;
+  }
+}
+
+@utility animate-reveal {
+  animation-timeline: view();
+  animation-range: 0% 20%;
+}
+
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* A row that scrolls sideways and snaps each child to its center. */
+@utility snap-row {
+  @apply overflow-x-auto overscroll-x-contain snap-x snap-mandatory scrollbar-none;
+  @apply motion-safe:scroll-smooth *:shrink-0 *:snap-center;
+}
+
+/*
+ * Position dots under a scroll-snap row, one per child. Browsers without CSS carousels skip them.
+ * Turbopack's CSS parser does not recognize these selectors, so `next.config.ts` silences its warning.
+ */
+@utility carousel-markers {
+  scroll-marker-group: after;
+
+  &::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    gap: --spacing(2);
+    margin-top: --spacing(6);
+  }
+
+  & > *::scroll-marker {
+    content: "";
+    width: --spacing(2);
+    height: --spacing(2);
+    border-radius: 9999px;
+    background-color: var(--color-border);
+  }
+
+  & > *::scroll-marker:target-current {
+    background-color: var(--color-foreground);
+  }
+}
+
+/* View transitions ------------------------------------------------------------
+   Drives the `<ViewTransition>` boundaries (e.g. the user menu). Entering
+   content cross-fades into place (`enter="auto"`).
+   See https://nextjs.org/docs/app/guides/view-transitions. */
+
+/* Let clicks pass through the snapshot overlay to the live content beneath. */
+::view-transition {
+  pointer-events: none;
+}
+
+/* No whole-page cross-fade: `new(root)` is a live capture, so unnamed chrome
+   (header, footer, hero) keeps rendering instead of freezing behind a stale
+   snapshot: only the entering content group animates. */
+::view-transition-old(root) {
+  display: none;
+}
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* Structural reduced-motion: covers every CSS transition, animation, and view
+   transition app-wide, so individual elements don't need motion-reduce variants.
+   JS-driven motion (motion/react) opts in separately via MotionConfig. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+
+  /* Status indicators stay alive. Reduced motion must not remove in-flight
+     feedback, so pending spinners keep turning, just gently. */
+  .animate-spin,
+  .after\:animate-spin::after {
+    animation-duration: 1.5s !important;
+  }
+}

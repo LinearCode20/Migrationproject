@@ -1,0 +1,63 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Local env files — ignore ALL, allowlist only the committed template
+.env*
+!.env.example
+
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vercel
+.vercel
+
+# prisma
+.generated
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# AI Rules
+.agents
+.cursor
+.claude
+.sisyphus
+.conductor
+.superset
+.context
+.research
+CLAUDE.md
+AGENTS.md
+
+# sitemap
+public/sitemap*.xml
+public/robots.txt
+
+# local design docs and plans (not for public repo)
+/docs
+/spike
+
+# CLI data (cache, output, progress) and docs
+.data
+.docs

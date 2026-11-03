@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "bun run db:migrate deploy && bun run build",
+  "crons": [
+    {
+      "path": "/api/cron/publish",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}

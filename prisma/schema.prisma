@@ -1,0 +1,232 @@
+generator client {
+  provider        = "prisma-client"
+  previewFeatures = ["postgresqlExtensions"]
+  engineType      = "client"
+  output          = "../.generated/prisma"
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [citext]
+}
+
+enum ToolStatus {
+  Draft
+  Scheduled
+  Pending
+  Published
+}
+
+enum ToolTier {
+  Free
+  Standard
+  Premium
+}
+
+enum ReportType {
+  BrokenLink
+  WrongCategory
+  Outdated
+  Other
+}
+
+enum PostStatus {
+  Draft
+  Scheduled
+  Published
+}
+
+model User {
+  id            String    @id @default(cuid(2))
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  role          String    @default("user")
+  banned        Boolean?  @default(false)
+  banReason     String?
+  banExpires    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  accounts  Account[]
+  sessions  Session[]
+  tools     Tool[]
+  posts     Post[]
+  bookmarks Bookmark[]
+
+  // Indexes
+  @@index([id])
+}
+
+model Session {
+  id             String   @id @default(cuid(2))
+  token          String   @unique
+  expiresAt      DateTime
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  // Indexes
+  @@index([userId])
+}
+
+model Account {
+  id                    String    @id @default(cuid(2))
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  // Indexes
+  @@index([userId])
+}
+
+model Verification {
+  id         String   @id @default(cuid(2))
+  identifier String   @unique
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Tool {
+  id             String     @id @default(cuid(2))
+  name           String     @db.Citext
+  slug           String     @unique
+  websiteUrl     String
+  affiliateUrl   String?
+  tagline        String?
+  description    String?
+  content        String?
+  faviconUrl     String?
+  screenshotUrl  String?
+  tier           ToolTier   @default(Free)
+  tierPriority   Int        @default(dbgenerated())
+  submitterNote  String?
+  status         ToolStatus @default(Draft)
+  publishedAt    DateTime?
+  verifiedAt     DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  // Relations
+  categories Category[]
+  tags       Tag[]
+  reports    Report[]
+  bookmarks  Bookmark[]
+  owner      User?      @relation(fields: [ownerId], references: [id])
+  ownerId    String?
+
+  @@index([id, slug])
+  @@index([name])
+  @@index([ownerId])
+  @@index([status, tierPriority, publishedAt(sort: Desc), id])
+  @@index([createdAt])
+}
+
+model Category {
+  id          String   @id @default(cuid(2))
+  name        String   @db.Citext
+  slug        String   @unique
+  label       String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Implicit relation
+  tools Tool[]
+
+  // Indexes
+  @@index([slug])
+}
+
+model Tag {
+  id        String   @id @default(cuid(2))
+  name      String   @db.Citext
+  slug      String   @unique
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  // Relations
+  tools Tool[]
+
+  // Indexes
+  @@index([name])
+}
+
+model Report {
+  id        String     @id @default(cuid(2))
+  type      ReportType @default(Other)
+  message   String?
+  email     String     @default("")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Relations
+  tool   Tool?   @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  toolId String?
+
+  // Indexes
+  @@index([toolId])
+}
+
+model Bookmark {
+  id        String   @id @default(cuid(2))
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  tool   Tool   @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  toolId String
+
+  // Indexes
+  @@unique([userId, toolId])
+  @@index([userId])
+  @@index([toolId])
+}
+
+model Post {
+  id          String     @id @default(cuid(2))
+  title       String     @db.Citext
+  slug        String     @unique
+  description String?
+  content     String
+  plainText   String     @default("")
+  imageUrl    String?
+  status      PostStatus @default(Draft)
+  publishedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // Relations
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  // Indexes
+  @@index([slug])
+  @@index([status])
+  @@index([authorId])
+  @@index([publishedAt])
+}
